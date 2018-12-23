@@ -42,6 +42,13 @@ class TableVCNews: UITableViewController,UISearchResultsUpdating,CoreActionsUpda
     func updateRows() {
         tableView.reloadData()
     }
+    
+    func displayError(error:String) {
+        let alert = UIAlertController(title: "ERROR!", message: error, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .destructive , handler: nil)
+        alert.addAction(ok)
+        self.present(alert,animated:true,completion:nil)
+    }
     //MARK:End delegate methods
     
     func isSearchActive() -> Bool {

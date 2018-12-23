@@ -79,6 +79,11 @@ class CoreActionsModel {
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
     
+    private func sendDataToView() {
+        
+        
+    }
+    
     //Get data from server
     //Send data to view and to storage
     @objc func requestInfoFromSite() {
@@ -87,9 +92,8 @@ class CoreActionsModel {
         if url == nil {
             print("Ooops! An error occured with getting URL!")
             DispatchQueue.main.async {
-                self.delegateActions?.resetViewModel()
-                self.delegateActions?.updateRows()
                 self.sendRecordsFromCoreData()
+                self.delegateActions?.displayError(error:"Seems URL with API key is not correct. Please check URL in CoreActionsModel.swift file")
             }
             return
         }
@@ -97,7 +101,14 @@ class CoreActionsModel {
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         URLSession.shared.dataTask(with: url!) {(data, response, error) in
-            guard let data = data else { return }
+            guard let data = data else {
+                print("Oops! Some trouble with data \(error!.localizedDescription)")
+                DispatchQueue.main.async {
+                    self.sendRecordsFromCoreData()
+                    self.delegateActions?.displayError(error: error!.localizedDescription)
+                }
+                return
+            }
             let jsonDic = try! JSONSerialization.jsonObject(with: data, options: [])
                 as? [String: Any]
             self.articlesDict = jsonDic?["articles"] as? [[String: Any]]
@@ -172,5 +183,6 @@ protocol CoreActionsUpdaterDelegate:class {
     func resetViewModel()
     func insertNewRowInView(newAuthor:String,newDescr:String,newUrlStr:String)
     func updateRows()
+    func displayError(error:String)
 }
 

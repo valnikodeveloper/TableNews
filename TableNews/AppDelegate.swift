@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         let navController = UINavigationController(rootViewController: tableVC)
         window!.rootViewController = navController
         window!.makeKeyAndVisible()
-        UINavigationBar.appearance().barTintColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        UINavigationBar.appearance().barTintColor = #colorLiteral(red: 0.1298420429, green: 0.1298461258, blue: 0.1298439503, alpha: 1)
         return true
     }
 
