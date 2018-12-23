@@ -40,6 +40,7 @@ class CoreActionsModel {
         }
         catch
         {
+            self.delegateActions?.displayError(error: "There was an error while trying to clean storage")
             print ("There was an error")
         }
     }
@@ -53,6 +54,7 @@ class CoreActionsModel {
         do {
             try managedContext.save()
         } catch let error as NSError {
+            delegateActions?.displayError(error: "Fatal: data is failed to save,\(error.localizedDescription) ")
             print("Fatal: data is failed to save. \(error), \(error.userInfo)")
         }
     }
@@ -162,6 +164,7 @@ class CoreActionsModel {
             }
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
+            self.delegateActions?.displayError(error: error.localizedDescription)
         }
         delegateActions?.updateRows()
     }
