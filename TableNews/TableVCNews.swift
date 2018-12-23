@@ -11,7 +11,7 @@
 
 import UIKit
 
-//View Model
+//model of view
 struct NewsForDisplay {
     var author:String! = ""
     var descriptionOfNews:String! = ""

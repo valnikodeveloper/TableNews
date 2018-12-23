@@ -39,7 +39,7 @@ class CellOfTableView: UITableViewCell {
         fatalError("init(coder:)")
     }
     
-    func loadImage(){
+    private func loadImage(){
         imageNews.image = nil
         waitingSpinner.startAnimating()
         if let url = urlToImg {
