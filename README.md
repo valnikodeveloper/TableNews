@@ -15,4 +15,4 @@ The link was put into this file CoreActionsModel.swift.
 6. Remind to check news - Local notification is used.
 7. СoreData is used.
 
-</br > Version: 1.6 .
+</br > Version: 1.7 .

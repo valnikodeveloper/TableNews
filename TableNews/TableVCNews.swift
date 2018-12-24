@@ -98,6 +98,7 @@ class TableVCNews: UITableViewController,UISearchResultsUpdating,CoreActionsUpda
         coreActionsModel.freshNews(everySeconds: 900)
         tableView.separatorInset.left = 0
         tableView.separatorColor = #colorLiteral(red: 0.1298420429, green: 0.1298461258, blue: 0.1298439503, alpha: 1)
+        tableView.backgroundColor = #colorLiteral(red: 0.1298420429, green: 0.1298461258, blue: 0.1298439503, alpha: 1)
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
