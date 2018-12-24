@@ -11,7 +11,7 @@
 
 import UIKit
 
-//model of view
+//Model of view
 struct NewsForDisplay {
     var author:String! = ""
     var descriptionOfNews:String! = ""
@@ -170,10 +170,12 @@ protocol ImageTransmitDelegate {
 
 extension UIFont {
     func calcSizeFont() -> CGFloat {
-        if  UIDevice.current.orientation.isPortrait {
+        if  UIDevice.current.orientation.isPortrait || UIDevice.current.orientation.isFlat {
             return UIScreen.main.bounds.width * 0.05 + 2
-        }else {
+        }
+        if  UIDevice.current.orientation.isLandscape {
             return UIScreen.main.bounds.height * 0.05 + 2
         }
+        return self.pointSize
     }
 }
