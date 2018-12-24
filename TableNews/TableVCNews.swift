@@ -112,6 +112,8 @@ class TableVCNews: UITableViewController,UISearchResultsUpdating,CoreActionsUpda
         searchCtroller.searchResultsUpdater = self
         searchCtroller.obscuresBackgroundDuringPresentation = false
         searchCtroller.searchBar.placeholder = "Search News"
+        searchCtroller.searchBar.tintColor = .white
+        searchCtroller.searchBar.barStyle = .black
         navigationItem.searchController = searchCtroller
         navigationItem.title = "News"
         definesPresentationContext = true
