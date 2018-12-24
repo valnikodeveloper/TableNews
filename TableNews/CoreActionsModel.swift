@@ -80,12 +80,7 @@ class CoreActionsModel {
         let request = UNNotificationRequest(identifier: "requestIdFirst", content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
-    
-    private func sendDataToView() {
-        
-        
-    }
-    
+
     //Get data from server
     //Send data to view and to storage
     @objc func requestInfoFromSite() {
