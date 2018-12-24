@@ -41,7 +41,7 @@ class CoreActionsModel {
         catch
         {
             self.delegateActions?.displayError(error: "There was an error while trying to clean storage")
-            print ("There was an error")
+            print ("There was an error while trying to clean storage")
         }
     }
     
@@ -115,6 +115,13 @@ class CoreActionsModel {
                 as? [String: Any]
             self.articlesDict = jsonDic?["articles"] as? [[String: Any]]
             var isDictEmpty = true
+            if self.articlesDict == nil {
+                DispatchQueue.main.async {
+                    self.sendRecordsFromCoreData()
+                    self.delegateActions?.displayError(error: "Couldn't fetch info from server.\nMaybe link is wrong.")
+                }
+                return
+            }
             if (self.articlesDict?.count)! > 1 {
                 isDictEmpty = false
             }
