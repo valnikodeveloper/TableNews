@@ -4,7 +4,7 @@
 //
 //  This clase is for expanding info what was got
 //  Created by Valeriy on 08/12/2018.
-//  Copyright © 2018 Valeriy Nikolaev. All rights reserved.
+//  Copyright © 2018-2019 Valeriy Nikolaev. All rights reserved.
 //
 
 import UIKit

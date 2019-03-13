@@ -13,7 +13,7 @@
 // 3. Send data from storage to view
 // 4. Triggers view updating
 // 5. freshNews (To new update) implimentation here. Method  which is called from controller.
-// Copyright © 2018 Valeriy Nikolaev. All rights reserved.
+// Copyright © 2018-2019 Valeriy Nikolaev. All rights reserved.
 
 import UIKit
 import CoreData
@@ -24,7 +24,7 @@ import UserNotifications
 class CoreActionsModel {
 
     var articlesDict:[[String: Any]]?
-    var delegateActions:CoreActionsUpdaterDelegate?
+    weak var delegateActions:CoreActionsUpdaterDelegate?
     let appDelegate =
         UIApplication.shared.delegate as? AppDelegate
     var managedContext:NSManagedObjectContext!

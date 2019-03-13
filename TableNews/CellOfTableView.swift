@@ -4,7 +4,7 @@
 //
 //  Created by Valeriy on 14/11/2018.
 //
-// Copyright © 2018 Valeriy Nikolaev. All rights reserved.
+// Copyright © 2018-2019 Valeriy Nikolaev. All rights reserved.
 import UIKit
 
 class CellOfTableView: UITableViewCell {
@@ -13,7 +13,7 @@ class CellOfTableView: UITableViewCell {
     var authorLabel:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: 225, height: 20))
     var descrLabel:UILabel = UILabel(frame: CGRect(x: 0, y: 20, width: 225, height: 139))
     
-    var transmitImageDelegate:ImageTransmitDelegate?
+    weak var transmitImageDelegate:ImageTransmitDelegate?
     private var waitingSpinner:UIActivityIndicatorView!
     
     //Value observer when url is assigned

@@ -7,7 +7,7 @@
 // View and controller class
 // Controller - to assign task for model.
 // Model updates view through delegates
-// Copyright © 2018 Valeriy Nikolaev. All rights reserved.
+// Copyright © 2018-2019 Valeriy Nikolaev. All rights reserved.
 
 import UIKit
 
@@ -165,7 +165,7 @@ class TableVCNews: UITableViewController,UISearchResultsUpdating,CoreActionsUpda
     }
 }
 
-protocol ImageTransmitDelegate {
+protocol ImageTransmitDelegate:class {
     //In case if user tapped on row but image was not ready
     func imageTransmitDelegateMethod(image:UIImage?)
 }
