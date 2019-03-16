@@ -97,30 +97,30 @@ class CoreActionsModel {
         var request = URLRequest(url: url!)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        URLSession.shared.dataTask(with: url!) {(data, response, error) in
+        URLSession.shared.dataTask(with: url!) { [weak self] (data, response, error) in
             guard let data = data else {
                 print("Oops! Some trouble with data \(error!.localizedDescription)")
                 DispatchQueue.main.async {
-                    self.sendRecordsFromCoreData()
-                    self.delegateActions?.displayError(error: error!.localizedDescription)
+                    self?.sendRecordsFromCoreData()
+                    self?.delegateActions?.displayError(error: error!.localizedDescription)
                 }
                 return
             }
             let jsonDic = try! JSONSerialization.jsonObject(with: data, options: [])
                 as? [String: Any]
-            self.articlesDict = jsonDic?["articles"] as? [[String: Any]]
+            self?.articlesDict = jsonDic?["articles"] as? [[String: Any]]
             var isDictEmpty = true
-            if self.articlesDict == nil {
+            if self?.articlesDict == nil {
                 DispatchQueue.main.async {
-                    self.sendRecordsFromCoreData()
-                    self.delegateActions?.displayError(error: "Couldn't fetch info from server.\nMaybe link is wrong.")
+                    self?.sendRecordsFromCoreData()
+                    self?.delegateActions?.displayError(error: "Couldn't fetch info from server.\nMaybe link is wrong.")
                 }
                 return
             }
-            if (self.articlesDict?.count)! > 1 {
+            if (self?.articlesDict?.count)! > 1 {
                 isDictEmpty = false
             }
-            for article in self.articlesDict! {
+            for article in (self?.articlesDict)! {
                 var author = article["author"] as? String
                 if author  == nil {
                     author  = "AUTHOR UNKNOWN"
@@ -139,15 +139,15 @@ class CoreActionsModel {
                 DispatchQueue.main.async {
                     //Dictionary is not empty so delete all the old data and load new
                     if isDictEmpty == false {
-                        self.cleanStorage()
-                        self.delegateActions?.resetViewModel()
-                        self.delegateActions?.updateRows()
+                        self?.cleanStorage()
+                        self?.delegateActions?.resetViewModel()
+                        self?.delegateActions?.updateRows()
                         isDictEmpty = true
                     }
                     //Send data to view
-                    self.delegateActions?.insertNewRowInView(newAuthor:author!, newDescr: description!, newUrlStr: urlToImageStr!)
+                    self?.delegateActions?.insertNewRowInView(newAuthor:author!, newDescr: description!, newUrlStr: urlToImageStr!)
                     //Save to storage
-                    self.save(author: author!, descr: description!, urlToImg: urlToImageStr!)
+                    self?.save(author: author!, descr: description!, urlToImg: urlToImageStr!)
                 }
             }
         }.resume()

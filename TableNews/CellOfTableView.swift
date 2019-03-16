@@ -43,14 +43,14 @@ class CellOfTableView: UITableViewCell {
         imageNews.image = nil
         waitingSpinner.startAnimating()
         if let url = urlToImg {
-            URLSession.shared.dataTask(with: url) {(dataFromServer, response , err)
+            URLSession.shared.dataTask(with: url) { [weak self] (dataFromServer, response , err)
                 in
                 if let imageData = dataFromServer {
                     DispatchQueue.main.async {
-                            if url == self.urlToImg {
-                                self.imageNews.image = UIImage(data: imageData)
-                                self.transmitImageDelegate?.imageTransmitDelegateMethod(image: self.imageNews.image)
-                                self.waitingSpinner.stopAnimating()
+                            if url == self?.urlToImg {
+                                self?.imageNews.image = UIImage(data: imageData)
+                                self?.transmitImageDelegate?.imageTransmitDelegateMethod(image: self?.imageNews.image)
+                                self?.waitingSpinner.stopAnimating()
                             }
                     }
                 }
