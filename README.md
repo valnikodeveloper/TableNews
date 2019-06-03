@@ -1,9 +1,8 @@
 # TableNews
 Here is TableNews for testing and learning purposes.
 
-Attention - Personal API key from site was used for testing the app and the site is 
-https://newsapi.org.
-The link was put into this file CoreActionsModel.swift. 
+Attention - Personal API key from site was used for testing of this app and the site is https://newsapi.org. The link was put into this file CoreActionsModel.swift.
+To test app need to get the personal API key from  https://newsapi.org and put it to CoreActionsModel.swift.
 
 </br >The app does the following:
 1. Connect to the news site and download JSON data. 
