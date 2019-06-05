@@ -55,7 +55,6 @@ class CoreActionsModel {
             try managedContext.save()
         } catch let error as NSError {
             delegateActions?.displayError(error: "Fatal: data is failed to save,\(error.localizedDescription) ")
-            print("Fatal: data is failed to save. \(error), \(error.userInfo)")
         }
     }
     
@@ -83,14 +82,26 @@ class CoreActionsModel {
 
     //Get data from server
     //Send data to view and to storage
+    func demonstrationData() {
+        delegateActions?.resetViewModel()
+        delegateActions?.updateRows()
+        let author  = "AUTHOR UNKNOWN"
+        let description = "TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION"
+        let urlToImageStr = "NO IMAGE"
+        print("demo data")
+        for _ in 0 ..< 10 {
+            delegateActions?.insertNewRowInView(newAuthor:author, newDescr: description, newUrlStr: urlToImageStr)
+        }
+
+    }
+
     @objc func requestInfoFromSite() {
         //MARK: ATTENTION ! URL with API key should be here:
-        let url = URL(string: "<URL with API key should be here>")
+        let url = URL(string:"<YOUR LINK SHOULD BE HERE>")
         if url == nil {
-            print("Ooops! An error occured with getting URL!")
             DispatchQueue.main.async {
                 self.sendRecordsFromCoreData()
-                self.delegateActions?.displayError(error:"Seems URL with API key is not correct. Please check URL in CoreActionsModel.swift file")
+                self.delegateActions?.errorSuggestTestPattern(error:"Seems URL with API key is incorrect. Please check URL in CoreActionsModel.swift file. \n Would you like to see a demo pattern instead?")
             }
             return
         }
@@ -99,7 +110,6 @@ class CoreActionsModel {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         URLSession.shared.dataTask(with: url!) { [weak self] (data, response, error) in
             guard let data = data else {
-                print("Oops! Some trouble with data \(error!.localizedDescription)")
                 DispatchQueue.main.async {
                     self?.sendRecordsFromCoreData()
                     self?.delegateActions?.displayError(error: error!.localizedDescription)
@@ -189,5 +199,6 @@ protocol CoreActionsUpdaterDelegate:class {
     func insertNewRowInView(newAuthor:String,newDescr:String,newUrlStr:String)
     func updateRows()
     func displayError(error:String)
+    func errorSuggestTestPattern(error:String)
 }
 

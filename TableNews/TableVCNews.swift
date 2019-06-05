@@ -24,6 +24,7 @@ class TableVCNews: UITableViewController,UISearchResultsUpdating,CoreActionsUpda
     var rowsFoundForView:[NewsForDisplay] = []
     var searchCtroller:UISearchController!
     var sessionTask:URLSessionDataTask?
+    var coreActionsModel:CoreActionsModel!
     
     //MARK:Delegate methods,view actions
     func resetViewModel() {
@@ -49,6 +50,18 @@ class TableVCNews: UITableViewController,UISearchResultsUpdating,CoreActionsUpda
         alert.addAction(ok)
         self.present(alert,animated:true,completion:nil)
     }
+
+    func errorSuggestTestPattern(error:String) {
+         let alert = UIAlertController(title: "ERROR!", message: error, preferredStyle: .alert)
+         let ok = UIAlertAction(title: "YES", style: .default , handler: { [weak self] _ in
+            self?.coreActionsModel.demonstrationData()}
+         )
+         let cancel = UIAlertAction(title: "NO", style: .destructive , handler: nil)
+         alert.addAction(ok)
+         alert.addAction(cancel)
+         self.present(alert,animated:true,completion:nil)
+    }
+
     //MARK:End delegate methods
     
     func isSearchActive() -> Bool {
@@ -91,7 +104,7 @@ class TableVCNews: UITableViewController,UISearchResultsUpdating,CoreActionsUpda
         tableView.register(CellOfTableView.self, forCellReuseIdentifier: "cellId")
         self.tableView.rowHeight = calcHeightOfRow()
         createSearchController()
-        let coreActionsModel = CoreActionsModel()
+        coreActionsModel = CoreActionsModel()
         coreActionsModel.delegateActions = self
         coreActionsModel.setNotificationReminder()
         coreActionsModel.requestInfoFromSite()
