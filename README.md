@@ -14,3 +14,11 @@ To test app need to get the personal API key from  https://newsapi.org and put i
 7. СoreData is used.
 
 </br > Version: 1.10 .
+
+
+With no API key:
+
+<img src="https://user-images.githubusercontent.com/10907337/58962252-7ac2e700-87b3-11e9-8ef7-8bf2f74d3758.png" width="50%" height="50%">
+
+<img src="https://user-images.githubusercontent.com/10907337/58962251-7ac2e700-87b3-11e9-8549-995d06e41dd1.png" width="50%" height="50%">
+
