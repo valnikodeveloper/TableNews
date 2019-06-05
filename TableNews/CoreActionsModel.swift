@@ -80,21 +80,21 @@ class CoreActionsModel {
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
 
-    //Get data from server
-    //Send data to view and to storage
+    //ONLY SHOW DEMO
     func demonstrationData() {
         delegateActions?.resetViewModel()
         delegateActions?.updateRows()
         let author  = "AUTHOR UNKNOWN"
         let description = "TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION"
         let urlToImageStr = "NO IMAGE"
-        print("demo data")
         for _ in 0 ..< 10 {
             delegateActions?.insertNewRowInView(newAuthor:author, newDescr: description, newUrlStr: urlToImageStr)
         }
 
     }
 
+    //Get data from server
+    //Send data to view and to storage
     @objc func requestInfoFromSite() {
         //MARK: ATTENTION ! URL with API key should be here:
         let url = URL(string:"<URL with API key should be here>")
