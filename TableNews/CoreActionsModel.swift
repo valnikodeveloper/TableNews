@@ -97,7 +97,7 @@ class CoreActionsModel {
 
     @objc func requestInfoFromSite() {
         //MARK: ATTENTION ! URL with API key should be here:
-        let url = URL(string:"<YOUR LINK SHOULD BE HERE>")
+        let url = URL(string:"<URL with API key should be here>")
         if url == nil {
             DispatchQueue.main.async {
                 self.sendRecordsFromCoreData()
